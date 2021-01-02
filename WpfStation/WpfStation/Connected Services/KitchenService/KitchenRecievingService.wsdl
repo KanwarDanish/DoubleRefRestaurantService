@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="KitchenRecievingService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="NetTcpBinding_IKitchenRecievingService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
+                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
+                </msf:WindowsTransportSecurity>
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:8081/?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:8081/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IKitchenRecievingService_PublishToKitchenService_InputMessage">
+    <wsdl:part name="parameters" element="tns:PublishToKitchenService" />
+  </wsdl:message>
+  <wsdl:message name="IKitchenRecievingService_PublishToKitchenService_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PublishToKitchenServiceResponse" />
+  </wsdl:message>
+  <wsdl:message name="IKitchenRecievingService_RecieveKitchen_InputMessage">
+    <wsdl:part name="parameters" element="tns:RecieveKitchen" />
+  </wsdl:message>
+  <wsdl:message name="IKitchenRecievingService_RecieveKitchen_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RecieveKitchenResponse" />
+  </wsdl:message>
+  <wsdl:message name="IKitchenRecievingService_KitchenSubscribe_InputMessage">
+    <wsdl:part name="parameters" element="tns:KitchenSubscribe" />
+  </wsdl:message>
+  <wsdl:message name="IKitchenRecievingService_KitchenSubscribe_OutputMessage">
+    <wsdl:part name="parameters" element="tns:KitchenSubscribeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IKitchenRecievingService_KitchenUnsubscribe_InputMessage">
+    <wsdl:part name="parameters" element="tns:KitchenUnsubscribe" />
+  </wsdl:message>
+  <wsdl:message name="IKitchenRecievingService_KitchenUnsubscribe_OutputMessage">
+    <wsdl:part name="parameters" element="tns:KitchenUnsubscribeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IKitchenRecievingService_GetBackOrder_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBackOrder" />
+  </wsdl:message>
+  <wsdl:message name="IKitchenRecievingService_KitchenCallback_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:KitchenCallback" />
+  </wsdl:message>
+  <wsdl:message name="IKitchenRecievingService_KitchenSendToStationCallback_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:KitchenSendToStationCallback" />
+  </wsdl:message>
+  <wsdl:message name="IKitchenRecievingService_StationSendToKitchenCallback_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:StationSendToKitchenCallback" />
+  </wsdl:message>
+  <wsdl:portType name="IKitchenRecievingService">
+    <wsdl:operation name="PublishToKitchenService">
+      <wsdl:input wsaw:Action="http://tempuri.org/IKitchenRecievingService/PublishToKitchenService" message="tns:IKitchenRecievingService_PublishToKitchenService_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IKitchenRecievingService/PublishToKitchenServiceResponse" message="tns:IKitchenRecievingService_PublishToKitchenService_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RecieveKitchen">
+      <wsdl:input wsaw:Action="http://tempuri.org/IKitchenRecievingService/RecieveKitchen" message="tns:IKitchenRecievingService_RecieveKitchen_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IKitchenRecievingService/RecieveKitchenResponse" message="tns:IKitchenRecievingService_RecieveKitchen_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="KitchenSubscribe">
+      <wsdl:input wsaw:Action="http://tempuri.org/IKitchenRecievingService/KitchenSubscribe" message="tns:IKitchenRecievingService_KitchenSubscribe_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IKitchenRecievingService/KitchenSubscribeResponse" message="tns:IKitchenRecievingService_KitchenSubscribe_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="KitchenUnsubscribe">
+      <wsdl:input wsaw:Action="http://tempuri.org/IKitchenRecievingService/KitchenUnsubscribe" message="tns:IKitchenRecievingService_KitchenUnsubscribe_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IKitchenRecievingService/KitchenUnsubscribeResponse" message="tns:IKitchenRecievingService_KitchenUnsubscribe_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBackOrder">
+      <wsdl:input wsaw:Action="http://tempuri.org/IKitchenRecievingService/GetBackOrder" message="tns:IKitchenRecievingService_GetBackOrder_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="KitchenCallback">
+      <wsdl:output wsaw:Action="http://tempuri.org/IKitchenRecievingService/KitchenCallback" message="tns:IKitchenRecievingService_KitchenCallback_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="KitchenSendToStationCallback">
+      <wsdl:output wsaw:Action="http://tempuri.org/IKitchenRecievingService/KitchenSendToStationCallback" message="tns:IKitchenRecievingService_KitchenSendToStationCallback_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="StationSendToKitchenCallback">
+      <wsdl:output wsaw:Action="http://tempuri.org/IKitchenRecievingService/StationSendToKitchenCallback" message="tns:IKitchenRecievingService_StationSendToKitchenCallback_OutputCallbackMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="NetTcpBinding_IKitchenRecievingService" type="tns:IKitchenRecievingService">
+    <wsp:PolicyReference URI="#NetTcpBinding_IKitchenRecievingService_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="PublishToKitchenService">
+      <soap12:operation soapAction="http://tempuri.org/IKitchenRecievingService/PublishToKitchenService" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecieveKitchen">
+      <soap12:operation soapAction="http://tempuri.org/IKitchenRecievingService/RecieveKitchen" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="KitchenSubscribe">
+      <soap12:operation soapAction="http://tempuri.org/IKitchenRecievingService/KitchenSubscribe" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="KitchenUnsubscribe">
+      <soap12:operation soapAction="http://tempuri.org/IKitchenRecievingService/KitchenUnsubscribe" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBackOrder">
+      <soap12:operation soapAction="http://tempuri.org/IKitchenRecievingService/GetBackOrder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="KitchenCallback">
+      <soap12:operation soapAction="http://tempuri.org/IKitchenRecievingService/KitchenCallback" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="KitchenSendToStationCallback">
+      <soap12:operation soapAction="http://tempuri.org/IKitchenRecievingService/KitchenSendToStationCallback" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StationSendToKitchenCallback">
+      <soap12:operation soapAction="http://tempuri.org/IKitchenRecievingService/StationSendToKitchenCallback" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="KitchenRecievingService">
+    <wsdl:port name="NetTcpBinding_IKitchenRecievingService" binding="tns:NetTcpBinding_IKitchenRecievingService">
+      <soap12:address location="net.tcp://localhost:8091/SimpleService" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:8091/SimpleService</wsa10:Address>
+        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <Upn>DESKTOP-CDS2Q7J\dLL</Upn>
+        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
